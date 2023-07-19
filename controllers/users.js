@@ -8,7 +8,7 @@ const createUser = (req, res) => {
       res.status(201).send(user);
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -38,7 +38,7 @@ const getUser = (req, res) => {
       }
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'CastError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -58,7 +58,7 @@ const updateUser = (req, res) => {
       }
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -83,7 +83,7 @@ const updateUserAvatar = (req, res) => {
       }
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });

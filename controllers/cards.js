@@ -19,7 +19,7 @@ const createCard = (req, res) => {
       res.status(201).send(card);
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -37,7 +37,7 @@ const deleteCard = (req, res) => {
       res.send({ card });
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'CastError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -59,7 +59,7 @@ const likeCard = (req, res) => {
       }
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'CastError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
@@ -81,7 +81,7 @@ const dislikeCard = (req, res) => {
       }
     })
     .catch((error) => {
-      if (error.name === 'Error') {
+      if (error.name === 'CastError') {
         res.status(400).send({ message: 'Некорректные данные' });
       } else {
         res.status(500).send({ message: 'Ошибка на сервере' });
