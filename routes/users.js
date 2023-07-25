@@ -7,13 +7,17 @@ const urlCheckPattern = /https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-.~:/?#[\]@!$&'(
 const {
   getAllUsers,
   getUser,
+  getUserInfo,
   updateUser,
   updateUserAvatar,
 } = require('../controllers/users');
 
 router.get('/', getAllUsers);
-router.get('/me', getUser);
 
+// Пользователь
+router.get('/me', getUserInfo);
+
+// Пользователь по id
 router.get('/:id', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().length(24).hex().required(),

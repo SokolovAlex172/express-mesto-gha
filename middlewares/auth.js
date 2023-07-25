@@ -21,9 +21,9 @@ const auth = (req, res, next) => {
     next(new AuthError('Необходима авторизация'));
   }
 
-  res.user = payload;
+  req.user = payload;
 
   next();
 };
 
-module.exports = { JWT_SECRET, auth };
+module.exports = { auth };

@@ -30,7 +30,7 @@ const createCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
-  Card.findByIdAndDelete(cardId)
+  Card.findById(cardId)
     .orFail(() => {
       throw new NotFound(`Карточка с id: ${cardId} не найдена`);
     })
@@ -45,7 +45,7 @@ const deleteCard = (req, res, next) => {
       if (error.name === 'CastError') {
         next(new BadRequest(`Передан некорректный id: ${cardId}`));
       } else if (error.name === 'NotFound') {
-        next(new BadRequest(`Карточка с id: ${cardId} не найдена`));
+        next(new NotFound(`Карточка с id: ${cardId} не найдена`));
       } else {
         next(error);
       }

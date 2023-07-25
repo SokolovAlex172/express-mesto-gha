@@ -54,6 +54,21 @@ const getUser = (req, res, next) => {
     });
 };
 
+const getUserInfo = (req, res, next) => {
+  const { userId } = req.user;
+
+  User.findById(userId)
+    .orFail(() => next(new NotFound('Пользователь c указанным id не найден')))
+    .then((user) => res.send(user))
+    .catch((error) => {
+      if (error.name === 'CastError') {
+        next(new BadRequest('Передача некорректного id'));
+      } else {
+        next(error);
+      }
+    });
+};
+
 const updateUser = (req, res, next) => {
   const userId = req.user._id;
   const { name, about } = req.body;
@@ -99,6 +114,7 @@ module.exports = {
   createUser,
   getAllUsers,
   getUser,
+  getUserInfo,
   updateUser,
   updateUserAvatar,
   login,
