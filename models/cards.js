@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 const mongoose = require('mongoose');
-const validator = require('validator/lib/isURL');
+const { validator } = require('validator');
 
 const cardSchema = new mongoose.Schema(
   {
@@ -14,7 +14,7 @@ const cardSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Поле "link" должно быть заполнено'],
       validate: {
-        validator: (v) => validator.isURL(v),
+        validator: (url) => validator.isURL(url),
         message: 'Неверный URL',
       },
     },
