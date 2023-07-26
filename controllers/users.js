@@ -55,9 +55,9 @@ const getUser = (req, res, next) => {
 };
 
 const getUserInfo = (req, res, next) => {
-  const { userId } = req.user;
+  const { _id } = req.user;
 
-  User.findById(userId)
+  User.findById(_id)
     .orFail(() => next(new NotFound('Пользователь c указанным id не найден')))
     .then((user) => res.send(user))
     .catch((error) => {

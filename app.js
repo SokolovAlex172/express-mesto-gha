@@ -24,8 +24,10 @@ app.use(bodyParser.json());
 app.post('/signup', validateSignUp(), createUser);
 app.post('/signin', validateSignIn(), login);
 
-app.use('/users', auth, usersRouter);
-app.use('/cards', auth, cardsRouter);
+app.use(auth);
+
+app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
 
 app.use((req, res, next) => {
   next(new NotFound('Маршрут не найден'));
